@@ -37,7 +37,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://imagix-apok.onrender.com',
         changeOrigin: true,
       }
     }
@@ -45,7 +45,7 @@ export default defineConfig({
   preview: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://imagix-apok.onrender.com',
         changeOrigin: true,
       }
     }

@@ -72,9 +72,6 @@ function App() {
         const { data } = await axios.post('/api/image/enhance', { prompt: prompt.trim() });
         if (data.success && data.data.enhancedPrompt) {
           setPrompt(data.data.enhancedPrompt);
-          // Optional: Uncheck the toggle after successful enhancement, 
-          // but we can leave it checked to indicate it's an enhanced prompt.
-          // setShouldEnhance(false); 
         }
       } catch (err) {
         console.error("Enhance failed", err);
