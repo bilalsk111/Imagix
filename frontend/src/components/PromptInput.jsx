@@ -3,10 +3,6 @@ import React from 'react';
 const PromptInput = ({
   prompt,
   setPrompt,
-  onEnhance,
-  isEnhancing,
-  shouldEnhance,
-  setShouldEnhance,
   onGenerate,
   isGenerating,
   disabled,
@@ -23,15 +19,6 @@ const PromptInput = ({
         <label htmlFor="prompt-input" className="input-label">
           Describe your vision
         </label>
-        <button
-          type="button"
-          className="magic-enhance-pill"
-          onClick={onEnhance}
-          disabled={disabled || !prompt.trim()}
-          title="Rewrite your prompt with AI-powered detail"
-        >
-          {isEnhancing ? 'Enhancing…' : '✨ Magic Enhance'}
-        </button>
       </div>
 
       <div className="textarea-container">
@@ -44,28 +31,9 @@ const PromptInput = ({
           onKeyDown={handleKeyDown}
           rows={5}
         />
-        {isEnhancing && (
-          <div className="blur-overlay">
-            <div className="loader" />
-            <span className="overlay-text">Enhancing your prompt…</span>
-          </div>
-        )}
       </div>
 
       <div className="controls-dashboard">
-        <label className="toggle-switch-wrapper" htmlFor="enhance-checkbox">
-          <div className="switch-track">
-            <input
-              id="enhance-checkbox"
-              type="checkbox"
-              checked={shouldEnhance}
-              onChange={(e) => setShouldEnhance(e.target.checked)}
-              disabled={disabled}
-            />
-            <span className="switch-thumb" />
-          </div>
-          <span className="toggle-label">Auto-enhance before generating</span>
-        </label>
 
         <button
           type="button"

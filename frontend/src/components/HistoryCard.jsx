@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const HistoryCard = ({ item, onDelete, onOpenFull }) => {
+const HistoryCard = ({ item, index, onDelete, onOpenFull }) => {
   const [objectUrl, setObjectUrl] = useState('');
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const HistoryCard = ({ item, onDelete, onOpenFull }) => {
   const src = objectUrl || item.imageUrl;
 
   return (
-    <div className="history-card">
+    <div className="history-card" style={{ animation: `fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + (index || 0) * 0.05}s both` }}>
       {src && <img src={src} alt={item.prompt} className="history-image" />}
       <div className="history-overlay">
         <p className="history-prompt">{item.prompt}</p>

@@ -1,4 +1,5 @@
 import { FaSearchPlus, FaDownload } from 'react-icons/fa';
+
 const ImageShowcase = ({ imageUrl, usedPrompt, onOpenFull, onDownload }) => {
   if (!imageUrl) return null;
 
@@ -17,7 +18,7 @@ const ImageShowcase = ({ imageUrl, usedPrompt, onOpenFull, onDownload }) => {
       <div className="showcase-frame">
         <img src={imageUrl} alt={usedPrompt || 'Generated artwork'} className="showcase-image" />
         <div className="frame-overlay">
-          <button type="button" className="btn btn-glass btn-sm" onClick={onOpenFull}>
+          <button type="button" className="btn btn-glass btn-sm" onClick={() => onOpenFull(imageUrl)}>
             <FaSearchPlus /> View Fullscreen
           </button>
         </div>
@@ -27,7 +28,7 @@ const ImageShowcase = ({ imageUrl, usedPrompt, onOpenFull, onDownload }) => {
         <button type="button" className="btn btn-secondary" onClick={onDownload}>
           <FaDownload /> Download Image
         </button>
-        <button type="button" className="btn btn-secondary" onClick={onOpenFull}>
+        <button type="button" className="btn btn-secondary" onClick={() => onOpenFull(imageUrl)}>
           <FaSearchPlus /> View Fullscreen
         </button>
       </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import { FaMagic } from 'react-icons/fa';
 
 const GenerateForm = () => {
  const [prompt, setPrompt] = useState('');
@@ -91,7 +92,7 @@ const GenerateForm = () => {
               onChange={(e) => setShouldEnhance(e.target.checked)}
               disabled={isLoading}
             />
-            <span>✨ Enhance with AI (Midjourney Style)</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><FaMagic /> Enhance with AI (Midjourney Style)</span>
           </label>
 
           <button

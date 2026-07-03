@@ -7,7 +7,10 @@
   --primary-gradient: linear-gradient(135deg, #a78bfa 0%, #6366f1 50%, #38bdf8 100%);
   --danger: #ef4444;
   --danger-bg: rgba(239, 68, 68, 0.12);
-  --glass-blur: blur(20px);
+  --glass-blur: blur(24px);
+  --glass-bg: rgba(18, 18, 29, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.12);
 }
 
 *,
@@ -80,28 +83,32 @@ textarea {
   font-weight: 800;
   margin: 0 0 0.5rem 0;
   background: var(--primary-gradient);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -1.5px;
+  animation: gradientShift 5s ease infinite alternate;
 }
 .subtitle {
   color: var(--text-muted);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin: 0;
   font-weight: 400;
+  opacity: 0.9;
 }
 
 /* --- Glassmorphism Main Board --- */
 .main-card.glass-effect {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 28px;
-  padding: 3rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-top-color: var(--glass-highlight);
+  border-radius: 32px;
+  padding: 3.5rem;
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  animation: fadeInUp 0.6s ease-out 0.1s both;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
 }
 
 .input-block {
@@ -152,25 +159,26 @@ textarea {
 textarea {
   width: 100%;
   box-sizing: border-box;
-  background: rgba(10, 10, 16, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 18px;
-  padding: 1.5rem;
+  background: rgba(10, 10, 16, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 1.75rem;
   color: #fff;
   font-family: inherit;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   resize: vertical;
-  min-height: 130px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 140px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
 }
 textarea::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.3);
 }
 textarea:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
-  background: rgba(10, 10, 16, 0.8);
+  border-color: rgba(167, 139, 250, 0.5);
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.15), inset 0 2px 4px rgba(0,0,0,0.2);
+  background: rgba(10, 10, 16, 0.75);
 }
 textarea:disabled {
   opacity: 0.6;
@@ -285,23 +293,25 @@ textarea:disabled {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  border-radius: 14px;
-  padding: 0.85rem 1.8rem;
-  font-size: 1rem;
+  gap: 0.6rem;
+  border-radius: 16px;
+  padding: 0.9rem 2rem;
+  font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid transparent;
 }
 .btn-primary {
   background: var(--primary-gradient);
+  background-size: 200% auto;
   color: white;
-  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 12px 28px -6px rgba(99, 102, 241, 0.5);
 }
 .btn-primary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.6);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 20px 40px -8px rgba(99, 102, 241, 0.7);
+  background-position: right center;
 }
 .btn-secondary {
   background: rgba(255, 255, 255, 0.06);
@@ -475,18 +485,18 @@ textarea:disabled {
 .history-card {
   background: #11111a;
   border: 1px solid var(--card-border);
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
   position: relative;
   aspect-ratio: 1;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .history-card:hover,
 .history-card:focus-within {
-  transform: translateY(-6px);
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(167, 139, 250, 0.5);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.6), 0 0 20px rgba(167, 139, 250, 0.15);
 }
 .history-image {
   width: 100%;
@@ -611,6 +621,14 @@ textarea:disabled {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
 

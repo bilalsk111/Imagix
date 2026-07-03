@@ -1,3 +1,4 @@
+import { FaPalette } from 'react-icons/fa';
 import HistoryCard from './HistoryCard.jsx';
 
 const GalleryVault = ({ history, onDelete, onOpenFull }) => {
@@ -10,13 +11,13 @@ const GalleryVault = ({ history, onDelete, onOpenFull }) => {
 
       {history.length === 0 ? (
         <div className="empty-state">
-          <span className="empty-icon" aria-hidden="true">🎨</span>
+          <FaPalette className="empty-icon" aria-hidden="true" />
           <p>Your creative journey starts here. Generate your first image above.</p>
         </div>
       ) : (
         <div className="gallery-grid">
-          {history.map((item) => (
-            <HistoryCard key={item.id} item={item} onDelete={onDelete} onOpenFull={onOpenFull} />
+          {history.map((item, index) => (
+            <HistoryCard key={item.id} item={item} index={index} onDelete={onDelete} onOpenFull={onOpenFull} />
           ))}
         </div>
       )}

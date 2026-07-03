@@ -10,8 +10,7 @@ import Lightbox from './components/Lightbox.jsx';
 
 function App() {
   const [prompt, setPrompt] = useState('');
-  const [shouldEnhance, setShouldEnhance] = useState(false);
-  const [status, setStatus] = useState('idle'); // idle | enhancing_prompt | generating | done | error
+  const [status, setStatus] = useState('idle'); // idle | generating | done | error
   const [imageUrl, setImageUrl] = useState('');
   const [usedPrompt, setUsedPrompt] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -23,28 +22,6 @@ function App() {
   }, []);
 
   useEffect(() => { loadHistory(); }, [loadHistory]);
-
-  const handleEnhance = async () => {
-    if (!prompt.trim()) return;
-    setStatus('enhancing_prompt');
-    try {
-      const { data } = await axios.post('/api/image/enhance', { prompt: prompt.trim() });
-      if (data.success && data.data.enhancedPrompt) {
-        setPrompt(data.data.enhancedPrompt);
-      }
-    } catch (err) {
-      console.error('Enhance failed', err);
-    } finally {
-      setStatus('idle');
-    }
-  };
-
-  const handleShouldEnhanceChange = async (checked) => {
-    setShouldEnhance(checked);
-    if (checked && prompt.trim()) {
-      await handleEnhance();
-    }
-  };
 
   const generate = async () => {
     if (!prompt.trim()) return;
@@ -100,7 +77,7 @@ function App() {
     await loadHistory();
   };
 
-  const isLoading = status === 'enhancing_prompt' || status === 'generating';
+  const isLoading = status === 'generating';
 
   return (
     <div className="app-container">
@@ -125,10 +102,6 @@ function App() {
         <PromptInput
           prompt={prompt}
           setPrompt={setPrompt}
-          onEnhance={handleEnhance}
-          isEnhancing={status === 'enhancing_prompt'}
-          shouldEnhance={shouldEnhance}
-          setShouldEnhance={handleShouldEnhanceChange}
           onGenerate={generate}
           isGenerating={status === 'generating'}
           disabled={isLoading}
